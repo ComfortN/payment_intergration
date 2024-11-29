@@ -5,6 +5,30 @@ import { Paystack } from 'react-native-paystack-webview';
 
 const PaymentScreen = ({ route, navigation }) => {
     const { product } = route.params;
+
+    const handlePaymentSuccess = (res) => {
+        // Navigate to Products screen on successful payment
+        Alert.alert(
+            "Payment Successful", 
+            "Thank you for your purchase!",
+            [{ 
+                text: "OK", 
+                onPress: () => navigation.navigate('Product') 
+            }]
+        );
+    };
+  
+    const handlePaymentCancel = (e) => {
+        // Navigate back to Checkout with the selected product
+        Alert.alert(
+            "Payment Cancelled", 
+            "Your payment was not completed",
+            [{ 
+                text: "OK", 
+                onPress: () => navigation.navigate('Checkout', { product }) 
+            }]
+        );
+    };
   
     return (
       <View style={{ flex: 1 }}>
@@ -14,12 +38,8 @@ const PaymentScreen = ({ route, navigation }) => {
         billingEmail="paystackwebview@something.com"
         activityIndicatorColor="green"
         currency='ZAR'
-        onCancel={(e) => {
-          // handle response here
-        }}
-        onSuccess={(res) => {
-          // handle response here
-        }}
+        onCancel={(e) => handlePaymentCancel(e)}
+        onSuccess={(res) => handlePaymentSuccess(res)}
         autoStart={true}
       />
     </View>
