@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View , StyleSheet, TouchableOpacity} from 'react-native';
+import { Text, View , StyleSheet, TouchableOpacity, Image} from 'react-native';
 import { colors } from '../constants/colors';
 
 const CheckoutScreen = ({ route, navigation }) => {
@@ -13,7 +13,9 @@ const CheckoutScreen = ({ route, navigation }) => {
       <View style={styles.container}>
         <Text style={styles.checkoutTitle}>Checkout</Text>
         <View style={styles.checkoutDetails}>
+        <Image source={product.image} style={styles.productImage} />
           <Text style={styles.productName}>{product.name}</Text>
+          <Text style={styles.productDescription}>{product.description}</Text>
           <Text style={styles.productPrice}>R{product.price}</Text>
           <TouchableOpacity 
             style={styles.payButton}
@@ -49,8 +51,19 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     color: colors.primary
   },
+  productImage: {
+      width: 150,
+      height: 150,
+      resizeMode: 'contain'
+  },
   productName: {
     color: colors.textSecondary
+  },
+  productDescription: {
+      textAlign: 'center',
+      marginVertical: 10,
+      color: colors.primary,
+      fontSize: 12
   },
   productPrice: {
     color: colors.textSecondary
