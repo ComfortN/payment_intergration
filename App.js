@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import SplashScreen from './src/components/SplashScreen';
 import ProductScreen from './src/components/ProductScreen';
 import CheckoutScreen from './src/components/CheckoutScreen';
+import PaymentScreen from './src/components/PaymentScreen';
 
 
 const Stack = createStackNavigator();
@@ -28,7 +29,11 @@ export default function App() {
           component={CheckoutScreen} 
           options={{ title: 'Checkout' }} 
         />
-        
+        <Stack.Screen 
+          name="Payment" 
+          component={PaymentScreen} 
+          options={{ title: 'Payment' }} 
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
