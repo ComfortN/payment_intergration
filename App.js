@@ -6,6 +6,7 @@ import SplashScreen from './src/components/SplashScreen';
 import ProductScreen from './src/components/ProductScreen';
 import CheckoutScreen from './src/components/CheckoutScreen';
 import PaymentScreen from './src/components/PaymentScreen';
+import { colors } from './src/constants/colors';
 
 
 const Stack = createStackNavigator();
@@ -13,7 +14,12 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Splash">
+      <Stack.Navigator initialRouteName="Splash"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: colors.primary
+          }
+        }}>
         <Stack.Screen 
           name="Splash" 
           component={SplashScreen} 
