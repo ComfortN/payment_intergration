@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
 import SplashScreen from './src/components/SplashScreen';
 import ProductScreen from './src/components/ProductScreen';
+import CheckoutScreen from './src/components/CheckoutScreen';
 
 
 const Stack = createStackNavigator();
@@ -21,6 +22,11 @@ export default function App() {
           name="Product" 
           component={ProductScreen} 
           options={{ title: 'Products' }} 
+        />
+        <Stack.Screen 
+          name="Checkout" 
+          component={CheckoutScreen} 
+          options={{ title: 'Checkout' }} 
         />
         
       </Stack.Navigator>
