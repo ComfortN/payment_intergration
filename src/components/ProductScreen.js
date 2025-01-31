@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, FlatList, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
 import { colors } from '../constants/colors';
-
 
 const ProductScreen = ({ navigation }) => {
     const products = [
@@ -33,26 +32,23 @@ const ProductScreen = ({ navigation }) => {
             description: 'Sleek and modern gold-toned necklace with a simple pendant. Versatile design that easily transitions from day to night, making it a must-have in any jewelry collection.',
             image: require('../../assets/gold-necklace.jpeg')
         }
-        ];
+    ];
 
+    const renderProduct = ({ item }) => (
+        <View style={styles.productCard}>
+            <Image source={item.image} style={styles.productImage} />
+            <Text style={styles.productName}>{item.name}</Text>
+            <Text style={styles.productPrice}>R{item.price}</Text>
+            <TouchableOpacity 
+                style={styles.buyButton}
+                onPress={() => navigation.navigate('Checkout', { product: item })}
+            >
+                <Text style={styles.buyButtonText}>Buy Now</Text>
+            </TouchableOpacity>
+        </View>
+    );
 
-        const renderProduct = ({ item }) => (
-            <View style={styles.productCard}>
-                <Image source={item.image} style={styles.productImage} />
-                <Text style={styles.productName}>{item.name}</Text>
-                <Text style={styles.productPrice}>R{item.price}</Text>
-                {/* <Text style={styles.productDescription}>{item.description}</Text> */}
-                <TouchableOpacity 
-                    style={styles.buyButton}
-                    onPress={() => navigation.navigate('Checkout', { product: item })}
-                >
-                    <Text style={styles.buyButtonText}>Buy Now</Text>
-                </TouchableOpacity>
-            </View>
-        );
-
-    
-        return (
+    return (
         <View style={styles.container}>
             <FlatList
                 data={products}
@@ -63,63 +59,69 @@ const ProductScreen = ({ navigation }) => {
                 contentContainerStyle={styles.listContainer}
             />
         </View>
-        );
-    };
-    
-    const styles = StyleSheet.create({
-        container: {
-            flex: 1,
-            backgroundColor: colors.background
-        },
-        listContainer: {
-            padding: 10
-        },
-        row: {
-            flex: 1,
-            justifyContent: 'space-around'
-        },
-        productCard: {
-            width: '45%',
-            padding: 10,
-            marginVertical: 10,
-            borderWidth: 1,
-            borderColor: colors.primary,
-            borderRadius: 10,
-            alignItems: 'center',
-            backgroundColor: '#818D8B'
-        },
-        productImage: {
-            width: 150,
-            height: 150,
-            resizeMode: 'contain'
-        },
-        productName: {
-            fontSize: 16,
-            fontWeight: 'bold',
-            marginVertical: 10,
-            color: colors.textPrimary,
-            textAlign: 'center'
-        },
-        productPrice: {
-            fontSize: 14,
-            color: colors.textSecondary
-        },
-        productDescription: {
-            textAlign: 'center',
-            marginVertical: 10,
-            color: colors.primary,
-            fontSize: 12
-        },
-        buyButton: {
-            backgroundColor: colors.primary,
-            padding: 10,
-            paddingHorizontal: 20,
-            borderRadius: 5
-        },
-        buyButtonText: {
-            color: 'white',
-            textAlign: 'center',
-            fontSize: 12
-        }
-    });     
-    export default ProductScreen;
+    );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: colors.background,
+        paddingTop: 20
+    },
+    listContainer: {
+        paddingHorizontal: 10,
+        paddingBottom: 20
+    },
+    row: {
+        justifyContent: 'space-between'
+    },
+    productCard: {
+        width: '48%',
+        padding: 10,
+        marginVertical: 10,
+        borderWidth: 1,
+        borderColor: colors.primary,
+        borderRadius: 10,
+        alignItems: 'center',
+        backgroundColor: '#fff',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3
+    },
+    productImage: {
+        width: '100%',
+        height: 150,
+        resizeMode: 'contain',
+        marginBottom: 10
+    },
+    productName: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginVertical: 5,
+        color: colors.background,
+        textAlign: 'center'
+    },
+    productPrice: {
+        fontSize: 14,
+        color: colors.textSecondary,
+        marginBottom: 10
+    },
+    buyButton: {
+        backgroundColor: colors.primary,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 5,
+        width: '100%',
+        alignItems: 'center'
+    },
+    buyButtonText: {
+        color: 'white',
+        textAlign: 'center',
+        fontSize: 14,
+        fontWeight: 'bold'
+    }
+});
+
+export default ProductScreen;

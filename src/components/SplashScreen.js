@@ -26,10 +26,7 @@ const SplashScreen = ({ navigation }) => {
 
   return (
     <View style={styles.splashContainer}>
-      <Image 
-        source={require('../../assets/reflectory.png')} 
-        style={styles.splashLogo} 
-      />
+      
       <Text style={styles.splashText}>Payment Gateway App</Text>
     </View>
   );
@@ -49,6 +46,7 @@ const styles = StyleSheet.create({
   splashText: {
     fontSize: 24,
     fontWeight: 'bold',
+    color : colors.textPrimary
   },
 });
 
